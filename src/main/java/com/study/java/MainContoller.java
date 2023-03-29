@@ -1,5 +1,6 @@
 package com.study.java;
 
+import com.study.java.aspect.LogExecutionTime;
 import com.study.java.entity.user.Center;
 import com.study.java.entity.user.UserRepository;
 import com.study.java.entity.user.UserResponse;
@@ -17,12 +18,13 @@ public class MainContoller {
     private ApplicationContext applicationContext;
     private final UserRepository userRepository;
 
+    @LogExecutionTime
     @GetMapping("/context")
     public String iocContainerTest() {
-
         return "hello" + applicationContext.getBean(UserRepository.class);
     }
 
+    @LogExecutionTime
     @GetMapping("/user")
     public String userFind() {
         Center user = Center
